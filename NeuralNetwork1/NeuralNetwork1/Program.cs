@@ -74,6 +74,7 @@ namespace NeuralNetwork1
                 new double[]{ 0, 0, 0 },
                 new double[]{ 1, 0, 1 },
                 new double[]{ 0, 1, 1 },
+
             };
 
 
@@ -150,7 +151,11 @@ namespace NeuralNetwork1
             //Confirm that its worked
             Console.WriteLine($"The network learned XOR(1,0)={nn.Predict(new[] { 1.0, 0.0 })[0]}");
             Console.WriteLine($"The network learned XOR(1,1)={nn.Predict(new[] { 1.0, 1.0 })[0]}");
+            Console.WriteLine($"The network learned XOR(0,0)={nn.Predict(new[] { 0.0, 0.0 })[0]}");
+            Console.WriteLine($"The network learned XOR(0,1)={nn.Predict(new[] { 0.0, 1.0 })[0]}");
             Console.WriteLine("press any key to continue");
+
+       
             Console.ReadKey(true);
         }
     }

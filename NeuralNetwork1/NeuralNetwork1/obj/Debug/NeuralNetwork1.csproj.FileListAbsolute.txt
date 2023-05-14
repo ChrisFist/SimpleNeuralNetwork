@@ -1,0 +1,8 @@
+C:\Users\Admin\NNW\SimpleNeuralNetwork\NeuralNetwork1\NeuralNetwork1\bin\Debug\NeuralNetwork1.exe.config
+C:\Users\Admin\NNW\SimpleNeuralNetwork\NeuralNetwork1\NeuralNetwork1\bin\Debug\NeuralNetwork1.exe
+C:\Users\Admin\NNW\SimpleNeuralNetwork\NeuralNetwork1\NeuralNetwork1\bin\Debug\NeuralNetwork1.pdb
+C:\Users\Admin\NNW\SimpleNeuralNetwork\NeuralNetwork1\NeuralNetwork1\obj\Debug\NeuralNetwork1.csproj.AssemblyReference.cache
+C:\Users\Admin\NNW\SimpleNeuralNetwork\NeuralNetwork1\NeuralNetwork1\obj\Debug\NeuralNetwork1.csproj.SuggestedBindingRedirects.cache
+C:\Users\Admin\NNW\SimpleNeuralNetwork\NeuralNetwork1\NeuralNetwork1\obj\Debug\NeuralNetwork1.csproj.CoreCompileInputs.cache
+C:\Users\Admin\NNW\SimpleNeuralNetwork\NeuralNetwork1\NeuralNetwork1\obj\Debug\NeuralNetwork1.exe
+C:\Users\Admin\NNW\SimpleNeuralNetwork\NeuralNetwork1\NeuralNetwork1\obj\Debug\NeuralNetwork1.pdb
