@@ -380,5 +380,73 @@ namespace NeuralNetwork1
             return z * (1.0 - z);
         }
 
+        public double[][] NormalizeTrainingData(double[][] trainingData)
+        {
+            // Define the min and max values for each feature
+            double[] minValues = new double[8];
+            double[] maxValues = new double[8];
+
+            // Find the min and max values for each feature
+            for (int i = 0; i < 8; i++)
+            {
+                double min = trainingData[0][i];
+                double max = trainingData[0][i];
+
+                for (int j = 1; j < trainingData.Length; j++)
+                {
+                    if (trainingData[j][i] < min)
+                        min = trainingData[j][i];
+
+                    if (trainingData[j][i] > max)
+                        max = trainingData[j][i];
+                }
+
+                minValues[i] = min;
+                maxValues[i] = max;
+            }
+
+            // Normalize the training data
+            double[][] normalizedData = new double[trainingData.Length][];
+            for (int i = 0; i < trainingData.Length; i++)
+            {
+                normalizedData[i] = new double[8];
+
+                for (int j = 0; j < 8; j++)
+                {
+                    double normalizedValue = (trainingData[i][j] - minValues[j]) / (maxValues[j] - minValues[j]) * 2 - 1;
+                    normalizedData[i][j] = normalizedValue;
+                }
+            }
+
+            return normalizedData;
+        }
+
+        public double[][] GenerateTrainingData(double[][] training)
+        {
+            List<double[]> newCombinations = new List<double[]>();
+
+            // Generate all possible combinations of 7-digit states
+            for (int i = 0; i < 128; i++)
+            {
+                string binaryString = Convert.ToString(i, 2).PadLeft(7, '0'); // Convert to binary string with leading zeros
+                double[] combination = binaryString.Select(c => double.Parse(c.ToString())).ToArray();
+
+                // Check if the combination is already present in the training array
+                bool exists = training.Any(t => t.Take(7).SequenceEqual(combination));
+
+                if (!exists)
+                {
+                    double[] newCombination = new double[8];
+                    Array.Copy(combination, newCombination, 7);
+                    newCombination[7] = -1; // Assign an output value of -1 for the new combination
+                    newCombinations.Add(newCombination);
+                }
+            }
+
+            // Add the new combinations to the training array
+            double[][] updatedTraining = training.Concat(newCombinations).ToArray();
+
+            return updatedTraining;
+        }
     }
 }

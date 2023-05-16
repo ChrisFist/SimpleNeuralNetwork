@@ -19,7 +19,7 @@ namespace NeuralNetwork1
             var nn = new NeuralNetwork(layers)
             {
                 Iterations = 1000,              //training iterations
-                Alpha = 3.5,                    //learning rate, lower is slower, too high may not converge.
+                Alpha = 3.5,           //learning rate, lower is slower, too high may not converge.
                 L2_Regularization = true,       //set L2 regularization to prevent overfitting
                 Lambda = 0.0003,                //strength of L2
                 Rnd = new Random(12345)         //provide a seed for repeatable outputs
@@ -77,6 +77,25 @@ namespace NeuralNetwork1
 
             };
 
+            //var training = new double[][]
+            //{
+            //    new double[] { 0, 0, 1, 0, 0, 0, 1, 1 },
+            //    new double[] { 0, 1, 1, 1, 1, 1, 0, 2 },
+            //    new double[] { 0, 1, 1, 1, 0, 1, 1, 3 },
+            //    new double[] { 1, 0, 1, 1, 0, 0, 1, 4 },
+            //    new double[] { 1, 1, 0, 1, 0, 1, 1, 5 },
+            //    new double[] { 1, 1, 0, 1, 1, 1, 1, 6 },
+            //    new double[] { 0, 1, 1, 0, 0, 0, 1, 7 },
+            //    new double[] { 1, 1, 1, 1, 1, 1, 1, 8 },
+            //    new double[] { 1, 1, 1, 1, 0, 0, 1, 9 },
+            //    new double[] { 1, 1, 1, 0, 1, 1, 1, 0 },
+
+            //};
+
+
+            //training = nn.GenerateTrainingData(training);
+
+            //training= nn.NormalizeTrainingData(training);
 
             //Normalize the input to -1,+1 ?
             //We want a 0 mean, and 1 stdev.
@@ -90,12 +109,14 @@ namespace NeuralNetwork1
                 for (int j = 0; j < layers[0]; j++)
                     input[i][j] = training[i][j];
             }
-                
+            
+          
             //Create the expected label array
             var y = new double[training.GetLength(0)];
             for (int i = 0; i < training.GetLength(0); i++)
                 y[i] = training[i][layers[0]];
 
+          
 
             //Let's also monitor training by providing a delegate function
             nn.Monitor = delegate(TrainingTelemetry t)
@@ -108,9 +129,9 @@ namespace NeuralNetwork1
 
                 //Display some sample data
                 Console.WriteLine($"{nn.Predict(new[] { 0.0, 0.0 })[0]} -> 0");
-                Console.WriteLine($"{nn.Predict(new[] { 0.0, 1.0 })[0]} -> 1");
-                Console.WriteLine($"{nn.Predict(new[] { 1.0, 0.0 })[0]} -> 1");
                 Console.WriteLine($"{nn.Predict(new[] { 1.0, 1.0 })[0]} -> 0");
+                //Console.WriteLine($"{nn.Predict(new[] { 0.0, 2.0, 3.0, 4.0, 0.0, 6.0, 7.0 })[0]} -> 3");
+                //Console.WriteLine($"{nn.Predict(new[] { 1.0, 0.0, 3.0, 4.0, 0.0, 0.0, 7.0 })[0]} -> 4");
 
                 //Just for fun lets print out the weights and biases
                 Console.WriteLine("\nWeights:");
@@ -149,14 +170,20 @@ namespace NeuralNetwork1
             nn.Train(input, y);
 
             //Confirm that its worked
-            Console.WriteLine($"The network learned XOR(1,0)={nn.Predict(new[] { 1.0, 0.0 })[0]}");
-            Console.WriteLine($"The network learned XOR(1,1)={nn.Predict(new[] { 1.0, 1.0 })[0]}");
-            Console.WriteLine($"The network learned XOR(0,0)={nn.Predict(new[] { 0.0, 0.0 })[0]}");
-            Console.WriteLine($"The network learned XOR(0,1)={nn.Predict(new[] { 0.0, 1.0 })[0]}");
+            //Console.WriteLine($"The network learned XOR(1,0)={nn.Predict(new[] { 1.0, 0.0 })[0]}");
+            //Console.WriteLine($"The network learned XOR(1,1)={nn.Predict(new[] { 1.0, 1.0 })[0]}");
+            //Console.WriteLine($"The network learned XOR(0,0)={nn.Predict(new[] { 0.0, 0.0 })[0]}");
+            //Console.WriteLine($"The network learned XOR(0,1)={nn.Predict(new[] { 0.0, 1.0 })[0]}");
+
+            Console.WriteLine($"The network learned for Input(0,0,1,0,0,0,1)={nn.Predict(new[] { 0.0, 0.0 })[0]}");
+            Console.WriteLine($"The network learned for Input(1,1,0,1,1,1,1)={nn.Predict(new[] { 1.0, 1.0 })[0]}");
+            //Console.WriteLine($"The network learned for Input(0,2,3,4,5,6,0)={nn.Predict(new[] { 0.0, 2.0, 3.0, 4.0, 5.0, 6.0, 0.0 })[0]}");
+            //Console.WriteLine($"The network learned for Input(0,2,3,4,0,6,7)={nn.Predict(new[] { 0.0, 2.0, 3.0, 4.0, 0.0, 6.0, 7.0 })[0]}");
+
             Console.WriteLine("press any key to continue");
 
        
-            Console.ReadKey(true);
+           //Console.ReadKey(true);
         }
     }
 }
