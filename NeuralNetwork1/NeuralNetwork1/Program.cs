@@ -77,24 +77,29 @@ namespace NeuralNetwork1
 
             };
 
-            //var training = new double[][]
-            //{
-            //    new double[] { 0, 0, 1, 0, 0, 0, 1, 1 },
-            //    new double[] { 0, 1, 1, 1, 1, 1, 0, 2 },
-            //    new double[] { 0, 1, 1, 1, 0, 1, 1, 3 },
-            //    new double[] { 1, 0, 1, 1, 0, 0, 1, 4 },
-            //    new double[] { 1, 1, 0, 1, 0, 1, 1, 5 },
-            //    new double[] { 1, 1, 0, 1, 1, 1, 1, 6 },
-            //    new double[] { 0, 1, 1, 0, 0, 0, 1, 7 },
-            //    new double[] { 1, 1, 1, 1, 1, 1, 1, 8 },
-            //    new double[] { 1, 1, 1, 1, 0, 0, 1, 9 },
-            //    new double[] { 1, 1, 1, 0, 1, 1, 1, 0 },
+            var trainingTF = new double[][]
+            {
+                new double[] { 0, 0, 1, 0, 0, 0, 1, 1 },
+                new double[] { 0, 1, 1, 1, 1, 1, 0, 2 },
+                new double[] { 0, 1, 1, 1, 0, 1, 1, 3 },
+                new double[] { 1, 0, 1, 1, 0, 0, 1, 4 },
+                new double[] { 1, 1, 0, 1, 0, 1, 1, 5 },
+                new double[] { 1, 1, 0, 1, 1, 1, 1, 6 },
+                new double[] { 0, 1, 1, 0, 0, 0, 1, 7 },
+                new double[] { 1, 1, 1, 1, 1, 1, 1, 8 },
+                new double[] { 1, 1, 1, 1, 0, 0, 1, 9 },
+                new double[] { 1, 1, 1, 0, 1, 1, 1, 0 },
 
-            //};
+            };
 
 
-            //training = nn.GenerateTrainingData(training);
+            trainingTF = nn.GenerateTrainingData(trainingTF);
 
+            NeuralNetworkGenerator NTF = new NeuralNetworkGenerator();
+            var graph = NTF.BuildNeuralNetwork();
+            NTF.TrainNeuralNetwork(graph, trainingTF,500);
+        
+            
             //training= nn.NormalizeTrainingData(training);
 
             //Normalize the input to -1,+1 ?
